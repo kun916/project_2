@@ -227,6 +227,7 @@ app = dash.Dash(
     external_stylesheets=[dbc.themes.MINTY]
 )
 
+server=app.server
 # App layout
 app.layout = dbc.Container([
     dbc.Row([
