@@ -8,7 +8,7 @@ import datetime
 import webbrowser
 from threading import Timer
 from datetime import datetime, timedelta
-
+    
 data = pd.read_csv('data_nifty.csv')
 is_data = pd.read_csv('is_data_nifty.csv')
 bs_data = pd.read_csv('bs_data_nifty.csv')
@@ -783,7 +783,8 @@ def update_table(criteria1, min1, max1, criteria2, min2, max2, criteria3, min3, 
         row = [html.Td(row_data['symbol'])]
 
         # Get the close value
-        close_value = row_data.get('Close', None)
+        symbol = row_data['symbol']
+        close_value = data.loc[data['symbol'] == symbol, 'Close'].values[-1] if not data.loc[data['symbol'] == symbol, 'Close'].empty else None
         row.append(html.Td(close_value))
 
         # Add the criteria values
